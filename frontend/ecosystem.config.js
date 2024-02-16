@@ -5,7 +5,7 @@ const {
   DEPLOY_USER,
   DEPLOY_HOST,
   DEPLOY_PATH_FRONT,
-  DEPLOY_REPO,
+  DEPLOY_REPO_FRONT,
   DEPLOY_REF = 'origin/main',
 } = process.env;
 
@@ -16,7 +16,7 @@ module.exports = {
       host: DEPLOY_HOST,
       ref: DEPLOY_REF,
       key: '~/.ssh/id_ed25519',
-      repo: `${DEPLOY_REPO}/frontend`,
+      repo: DEPLOY_REPO_FRONT,
       path: DEPLOY_PATH_FRONT,
       'post-deploy': 'npm i && npm run build'
     },
