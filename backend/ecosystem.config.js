@@ -4,7 +4,7 @@ require('dotenv').config({ path: '../.env.deploy' });
 const {
   DEPLOY_USER,
   DEPLOY_HOST,
-  DEPLOY_PATH,
+  DEPLOY_PATH_BACK,
   DEPLOY_REF = 'origin/main',
   DEPLOY_REPO,
 } = process.env;
@@ -23,9 +23,10 @@ module.exports = {
       ref: DEPLOY_REF,
       key: '~/.ssh/id_ed25519',
       repo: DEPLOY_REPO,
-      path: DEPLOY_PATH,
-      'pre-deploy-local': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend`,
-      'post-deploy': `cd ${DEPLOY_PATH}/source/backend/ && npm i && npm run build`,
+      path: DEPLOY_PATH_BACK,
+      'pre-deploy': `cd ${DEPLOY_PATH_BACK}/source && git sparse-checkout add backend`,
+      'pre-deploy-local': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH_BACK}/source/backend`,
+      'post-deploy': `cd ${DEPLOY_PATH_BACK}/source/backend/ && npm i && npm run build`,
     },
   },
 };
