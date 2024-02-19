@@ -19,7 +19,7 @@ module.exports = {
       repo: DEPLOY_REPO,
       path: DEPLOY_PATH_FRONT,
       'pre-deploy': `cd ${DEPLOY_PATH_FRONT}/source && git sparse-checkout add frontend`,
-      'post-deploy': `cd ${DEPLOY_PATH_FRONT}/source/fontend/ && npm i && npm run build`
+      'post-deploy': `cd ${DEPLOY_PATH_FRONT}/source/frontend/ && npm i && npm run build`
     },
   },
 };
