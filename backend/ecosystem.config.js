@@ -26,7 +26,7 @@ module.exports = {
       path: DEPLOY_PATH_BACK,
       'pre-deploy': `cd ${DEPLOY_PATH_BACK}/source && git sparse-checkout add backend`,
       'pre-deploy-local': `scp ./.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH_BACK}/source/backend`,
-      'post-deploy': `cd ${DEPLOY_PATH_BACK}/source/backend/ && npm i && npm run build`,
+      'post-deploy': `cd ${DEPLOY_PATH_BACK}/source/backend/ && npm i && npm run build && pm2 restart kupipodariday-back`,
     },
   },
 };
